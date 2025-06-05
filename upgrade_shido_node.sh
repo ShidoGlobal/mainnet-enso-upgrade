@@ -114,7 +114,7 @@ if [ "$OS" = "Ubuntu" ] && { [ "$VERSION" = "20.04" ] || [ "$VERSION" = "22.04" 
     fi
     
     
-    
+    chmod u+x $HOMEDIR/cosmovisor/upgrades/v3.1.0/bin/shidod
     print_status "Shido upgrade completed successfully!"
     print_status "Binary location: $current_path/$BINARY"
     print_status "Cosmovisor upgrade: $HOMEDIR/cosmovisor/upgrades/v3.1.0/bin/shidod"
