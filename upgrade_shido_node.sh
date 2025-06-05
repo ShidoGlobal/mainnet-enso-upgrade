@@ -102,29 +102,20 @@ if [ "$OS" = "Ubuntu" ] && { [ "$VERSION" = "20.04" ] || [ "$VERSION" = "22.04" 
         print_warning "Binary downloaded but version check failed"
     fi
     
-    # Create cosmovisor upgrade directory structure if it doesn't exist
-    print_status "Setting up Cosmovisor upgrade..."
-    
-    # Ensure cosmovisor directories exist
-    mkdir -p "$HOMEDIR/cosmovisor/upgrades/enso/bin"
-    
-    # Copy binary to cosmovisor upgrade directory
-    cp "$BINARY" "$HOMEDIR/cosmovisor/upgrades/enso/bin/"
-    chmod +x "$HOMEDIR/cosmovisor/upgrades/enso/bin/shidod"
-    
+     
     # Add upgrade with Cosmovisor (if cosmovisor is available)
     if command -v cosmovisor >/dev/null 2>&1; then
         print_status "Adding upgrade to Cosmovisor..."
-        cosmovisor add-upgrade enso "$current_path/$BINARY"
-        print_status "Upgrade module 'enso' created successfully"
+        cosmovisor add-upgrade v3.1.0 "$current_path/$BINARY"
+        print_status "Upgrade module 'v3.1.0' created successfully"
     else
         print_warning "Cosmovisor not found. Binary copied to upgrade directory manually."
         print_warning "You may need to configure Cosmovisor manually."
     fi
     
     # Verify final binary
-    if [ -x "$HOMEDIR/cosmovisor/upgrades/enso/bin/shidod" ]; then
-        print_status "Upgrade binary is ready at: $HOMEDIR/cosmovisor/upgrades/enso/bin/shidod"
+    if [ -x "$HOMEDIR/cosmovisor/upgrades/v3.1.0/bin/shidod" ]; then
+        print_status "Upgrade binary is ready at: $HOMEDIR/cosmovisor/upgrades/v3.1.0/bin/shidod"
     else
         print_error "Failed to set up upgrade binary"
         exit 1
@@ -132,7 +123,7 @@ if [ "$OS" = "Ubuntu" ] && { [ "$VERSION" = "20.04" ] || [ "$VERSION" = "22.04" 
     
     print_status "Shido upgrade completed successfully!"
     print_status "Binary location: $current_path/$BINARY"
-    print_status "Cosmovisor upgrade: $HOMEDIR/cosmovisor/upgrades/enso/bin/shidod"
+    print_status "Cosmovisor upgrade: $HOMEDIR/cosmovisor/upgrades/v3.1.0/bin/shidod"
     
 else
     print_error "Unsupported OS or version: $OS $VERSION"
