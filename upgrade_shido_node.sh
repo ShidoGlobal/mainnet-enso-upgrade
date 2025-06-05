@@ -113,13 +113,7 @@ if [ "$OS" = "Ubuntu" ] && { [ "$VERSION" = "20.04" ] || [ "$VERSION" = "22.04" 
         print_warning "You may need to configure Cosmovisor manually."
     fi
     
-    # Verify final binary
-    if [ -x "$HOMEDIR/cosmovisor/upgrades/v3.1.0/bin/shidod" ]; then
-        print_status "Upgrade binary is ready at: $HOMEDIR/cosmovisor/upgrades/v3.1.0/bin/shidod"
-    else
-        print_error "Failed to set up upgrade binary"
-        exit 1
-    fi
+    
     
     print_status "Shido upgrade completed successfully!"
     print_status "Binary location: $current_path/$BINARY"
